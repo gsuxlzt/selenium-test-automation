@@ -1,0 +1,10 @@
+/node_modules
+/errorShots
+/screenShots
+chrome-minified-dev.crx
+npm-debug.log
+.DS_Store
+
+# IntelliJ
+*.iml
+/.idea
