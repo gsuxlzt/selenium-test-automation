@@ -79,6 +79,7 @@ exports.config = {
     //
     // Saves a screenshot to a given path if a command fails.
     screenshotPath: './errorShots/',
+    screenshotOnReject: true,
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -118,7 +119,8 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: [],//
+    services: ['selenium-standalone'],//
+    seleniumLogs: './logs',
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
@@ -139,7 +141,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 99999999
+        enableTimeouts: false
     },
     //
     // =====
@@ -178,7 +180,8 @@ exports.config = {
       var chai = require('chai');
       global.expect = chai.expect;
       chai.Should();
-      browser.windowHandleFullscreen();
+      
+      browser.windowHandleMaximize(true);
     },
     /**
      * Runs before a WebdriverIO command gets executed.
@@ -243,20 +246,6 @@ exports.config = {
      */
     after: function (result, capabilities, specs) {
       // if test passed, ignore, else take and save screenshot.
-       if (result.passed) {
-         // get current test title and clean it, to use it as file name
-         var filename = encodeURIComponent(result.title.replace(/\s+/g, '-'));
-         var scPath = './screenShots/';
-         // build file path
-         var filePath = scPath + filename + '.png';
-         // save screenshot
-
-         setTimeout(function() {
-           browser.saveScreenshot(filePath);
-         }, 1000);
-
-         console.log('\n\tScreenshot location:', filePath, '\n');
-       }
     },
     /**
      * Gets executed right after terminating the webdriver session.
