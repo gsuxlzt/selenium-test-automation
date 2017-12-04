@@ -46,8 +46,8 @@ exports.config = {
         //
         browserName: 'chrome',
         chromeOptions: {
-          binary: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
-          args: ['C:/Users/aallarde/Desktop/Piggy-Development/chrome-minified-dev'],
+          binary: '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome',
+          args: ['/Users/jami/Desktop/Piggy_Repo/piggy/chrome-minified-dev'],
           extensions: [
             new Buffer(require('fs').readFileSync('chrome-minified-dev.crx')).toString('base64')
           ]
