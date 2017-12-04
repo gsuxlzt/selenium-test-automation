@@ -1,6 +1,7 @@
 /node_modules
 /errorShots
 /screenShots
+/logs
 chrome-minified-dev.crx
 npm-debug.log
 .DS_Store
